@@ -19,7 +19,9 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $menus = Menu::with('category', 'menuIngredients.ingredient')->get();
-        return view('menu.index', compact('menus'));
+        $categories = Category::all();
+         $allIngredients =  ingredients::all();
+        return view('menu.index', compact('menus', 'categories', 'allIngredients'));
     }
 
     /**

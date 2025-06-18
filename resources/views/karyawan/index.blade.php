@@ -19,9 +19,45 @@
             @endif
 
             <div class="d-flex justify-content-between mb-3">
-                <a href="{{ route('karyawan.create') }}" class="btn btn-success">
+                <!-- Tombol Tambah Karyawan (Trigger Modal) -->
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahModal">
                     <i class="fas fa-plus me-1"></i> Tambah Karyawan
-                </a>
+                </button>
+            </div>
+
+            <!-- Modal Tambah Karyawan -->
+            <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title" id="tambahModalLabel">Tambah Karyawan</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                        </div>
+                        <form action="{{ route('karyawan.store') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nama</label>
+                                    <input type="text" name="name" id="name" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" name="password" id="password" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="table-responsive">
@@ -90,7 +126,6 @@
                                 </div>
                             </div>
                         </div>
-
                         @empty
                         <tr>
                             <td colspan="3" class="text-center">Belum ada data karyawan.</td>

@@ -19,11 +19,36 @@
                 </div>
             @endif
 
-            <!-- Tombol tambah kategori -->
+            <!-- Tombol tambah kategori (memicu modal) -->
             <div class="d-flex justify-content-between mb-3">
-                <a href="{{ route('categories.create') }}" class="btn btn-success">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
                     <i class="fas fa-plus me-1"></i> Tambah Kategori
-                </a>
+                </button>
+            </div>
+
+            <!-- Modal Tambah Kategori -->
+            <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content border-0 shadow">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addCategoryModalLabel">Tambah Kategori</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                        </div>
+                        <form action="{{ route('categories.store') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nama Kategori</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <!-- Tabel kategori -->
@@ -67,4 +92,5 @@
         </div>
     </div>
 </div>
+
 @endsection
